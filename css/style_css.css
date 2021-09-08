@@ -1,0 +1,43 @@
+body{
+    background-size: 100% ;
+    background-image:url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80') ;
+}
+.main-menu{
+    font-family: 'Lobster', cursive;
+}
+#form{
+
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.hide{
+    display: none;
+}
+.taskStyle{
+    border: 1px solid lightblue;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 5px;
+    background-color: lightgreen;
+}
+.title{
+    background-color: lightblue;
+}
+#area{
+    width: 60%;
+
+}
+.task{
+    margin-top: 5px;
+    width: 20%;
+    height: 100px;
+}
+#input{
+    width: 80%;
+}
+.taskNumber{
+   color:#fff;
+}
+#submit{
+    width: 50%;
+}

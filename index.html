@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="css/style_css.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@700&display=swap" rel="stylesheet">
+    <script src="JS/script.js"></script>
+</head>
+<body>
+<div class="col main-menu">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col-4">
+
+        </div>
+        <div class="col-4 col-md-4 col-ls-3">
+            <button type="button" class="w-100 btn btn-lg btn-primary" id="btn">Add new Task</button>
+
+        </div>
+
+    </div>
+    <div class="hide" id="menu">
+        <label>
+            <input type="text" name="input" id="input" placeholder="Enter the name:">
+            <textarea name="textArea" id="area" placeholder="Enter the description:"></textarea>
+            <input type="submit" class=" btn btn-lg btn-primary" id="submit">
+        </label>
+    </div>
+    <div id="tasks">
+        <ol id="todoList">
+
+        </ol>
+    </div>
+
+</div>
+</body>
+</html>
