@@ -30,13 +30,9 @@ body{
 .task{
     margin-top: 5px;
     width: 20%;
-    height: 100px;
 }
 #input{
     width: 80%;
-}
-.taskNumber{
-   color:#fff;
 }
 #submit{
     width: 50%;

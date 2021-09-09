@@ -22,11 +22,11 @@ window.addEventListener('load', function () {
         }
 
         toMethod() {
-            return `<li class="task" id="${this.id}">
+            return `<li class="task card" >
               <p class="taskNumber"> Name - ${this.name}</p>
               <p class="taskNumber"> Description - ${this.description}</p>
               <button type="button" class=" btn btn-lg btn-primary" data-id="${this.id}">Edit</button>
-              <button type="button" class=" btn btn-lg btn-primary delete" >Delete</button>
+              <button type="button" class=" btn btn-lg btn-primary delete" id="${this.id}">Delete</button>
              </li>`;
         }
     }
@@ -51,8 +51,10 @@ window.addEventListener('load', function () {
     function creatTask() {
         const tName = input.value;
         const tDescription = textArea.value;
-        const newTask = new Task(tName, tDescription)
-        addTask(newTask)
+        const newTask = new Task(tName, tDescription);
+        addTask(newTask);
+        document.getElementById('input').value = '';
+        document.getElementById('area').value = '';
     }
 
     button.addEventListener('click', creatTask)
@@ -66,10 +68,17 @@ window.addEventListener('load', function () {
         render();
     }
 
-    const taskItem = document.querySelectorAll('.task');
+    const taskItem = document.querySelector('#todoList');
 
     taskItem.addEventListener('click', function (event) {
-        console.log(event.target)
+        if (event.target.classList.contains('delete')){
+            const msg = confirm('Are you sure?')
+            if (msg){
+                deleteTask(event.target.id);
+            }else{
+                return false;
+            }
+        }
     })
 })
 
