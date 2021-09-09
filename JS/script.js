@@ -6,7 +6,12 @@ window.addEventListener('load', function () {
     const button = document.getElementById('submit');
     const addNewTask = document.getElementById('btn');
     const menu = document.getElementById('menu');
-
+    const saveButton = document.getElementById('save');
+    const taskName = document.getElementById('inputEdit');
+    const taskDescription = document.getElementById('areaEdit');
+    /**
+     * Opening input area
+     */
     addNewTask.addEventListener('click', function (event) {
         if (event) {
             menu.classList.remove('hide')
@@ -14,6 +19,9 @@ window.addEventListener('load', function () {
         }
     })
 
+    /**
+     * class Task
+     */
     class Task {
         constructor(name, description) {
             this.name = name;
@@ -25,12 +33,17 @@ window.addEventListener('load', function () {
             return `<li class="task card" >
               <p class="taskNumber"> Name - ${this.name}</p>
               <p class="taskNumber"> Description - ${this.description}</p>
-              <button type="button" class=" btn btn-lg btn-primary" data-id="${this.id}">Edit</button>
-              <button type="button" class=" btn btn-lg btn-primary delete" id="${this.id}">Delete</button>
+              <button type="button" class=" btn btn-primary edit" data-id="${this.id}"
+              type="button"  data-toggle="modal" data-target="#exampleModal"
+              >Edit</button>
+              <button type="button" class=" btn btn-primary delete" id="${this.id}">Delete</button>
              </li>`;
         }
     }
 
+    /**
+     * Render function
+     */
     function render() {
         const listUi = document.getElementById('todoList');
         listUi.innerHTML = '';
@@ -42,12 +55,19 @@ window.addEventListener('load', function () {
         })
     }
 
+    /**
+     * Add task object to tasklist array
+     * @param t object
+     */
 
     function addTask(t) {
         taskList.push(t);
         render();
     }
 
+    /**
+     * Creating task list
+     */
     function creatTask() {
         const tName = input.value;
         const tDescription = textArea.value;
@@ -57,6 +77,9 @@ window.addEventListener('load', function () {
         document.getElementById('area').value = '';
     }
 
+    /**
+     * Click function
+     */
     button.addEventListener('click', creatTask)
 
     function deleteTask(id) {
@@ -68,18 +91,46 @@ window.addEventListener('load', function () {
         render();
     }
 
-    const taskItem = document.querySelector('#todoList');
 
+    const taskItem = document.querySelector('#todoList');
+    /**
+     * Deleting task
+     */
     taskItem.addEventListener('click', function (event) {
-        if (event.target.classList.contains('delete')){
+        if (event.target.classList.contains('delete')) {
             const msg = confirm('Are you sure?')
-            if (msg){
+            if (msg) {
                 deleteTask(event.target.id);
-            }else{
+            } else {
                 return false;
             }
         }
+        let taskLength;
+        if (event.target.classList.contains('edit')) {
+            const taskId = event.target.getAttribute('data-id');
+            taskLength = taskList.filter(function (t) {
+                    if (t.id = taskId)
+                        return t;
+                }
+            );
+
+            document.getElementById('inputEdit').value = taskLength[0].name
+            document.getElementById('areaEdit').value = taskLength[0].description
+
+            document.getElementById('save').setAttribute('data-id',taskLength[0].id)
+            $('#editModal').modal('show');
+        }
     })
+    /**
+     * Save edited task
+     */
+    saveButton.addEventListener('click', function (event) {
+        const editedName = taskName.value;
+        const editedDescription = taskDescription.value;
+        const saveId = event.target.getAttribute('data-id')
+
+    })
+
 })
 
 
