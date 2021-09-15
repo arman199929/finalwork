@@ -17,23 +17,26 @@
     <script src="JS/script.js"></script>
 </head>
 <body>
+<div id="mainMenu"></div>
 <div class="col main-menu">
-    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        <div class="col-4">
+    <div id="addTaskList">
+        <div id="content">
+            <div class="row row-cols-1 row-cols-md-3 mb-3 ">
+                <div class="col-4 col-md-4 col-ls-3">
+                    <button type="button" class=" btn btn-lg btn-primary" id="btn">
+                        <img src="image/taskImage.png" alt="Task" width="40" height="40">
+                    </button>
+                </div>
 
+            </div>
+            <div class="hide" id="menu">
+                <label>
+                    <input type="text" name="input" id="input" placeholder="Enter the name:" style="margin-bottom: 8px">
+                    <textarea name="textArea" id="area" placeholder="Enter the description:"></textarea>
+                    <input type="submit" class=" btn btn-lg btn-primary" id="submit">
+                </label>
+            </div>
         </div>
-        <div class="col-4 col-md-4 col-ls-3">
-            <button type="button" class="w-100 btn btn-lg btn-primary" id="btn">Add new Task</button>
-
-        </div>
-
-    </div>
-    <div class="hide" id="menu">
-        <label>
-            <input type="text" name="input" id="input" placeholder="Enter the name:">
-            <textarea name="textArea" id="area" placeholder="Enter the description:"></textarea>
-            <input type="submit" class=" btn btn-lg btn-primary" id="submit">
-        </label>
     </div>
     <div id="tasks">
         <ol id="todoList">
@@ -51,8 +54,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="input" id="inputEdit" placeholder="Enter the name:">
-                    <textarea name="textArea" id="areaEdit" placeholder="Enter the description:"></textarea>
+                    <label>
+                        <input type="text" name="input" id="inputEdit" placeholder="Enter the name:" style="margin-bottom: 8px">
+                        <textarea name="textArea" id="areaEdit" placeholder="Enter the description:"></textarea>
+                    </label>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

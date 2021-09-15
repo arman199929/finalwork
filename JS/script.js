@@ -15,7 +15,6 @@ window.addEventListener('load', function () {
     addNewTask.addEventListener('click', function (event) {
         if (event) {
             menu.classList.remove('hide')
-            menu.style.textAlign = 'center'
         }
     })
 
@@ -31,6 +30,7 @@ window.addEventListener('load', function () {
 
         toMethod() {
             return `<li class="task card" >
+              <h3 class="taskTitle"><img src="../image/icon.png" alt="" width="50" height="50">Task</h3>
               <p class="taskNumber"> Name - ${this.name}</p>
               <p class="taskNumber"> Description - ${this.description}</p>
               <button type="button" class=" btn btn-primary edit" data-id="${this.id}"
@@ -40,6 +40,8 @@ window.addEventListener('load', function () {
              </li>`;
         }
     }
+
+    init();
 
     /**
      * Render function
@@ -56,7 +58,7 @@ window.addEventListener('load', function () {
     }
 
     /**
-     * Add task object to tasklist array
+     * Add task object to taskList array
      * @param t object
      */
 
@@ -68,13 +70,41 @@ window.addEventListener('load', function () {
     /**
      * Creating task list
      */
+
     function creatTask() {
-        const tName = input.value;
-        const tDescription = textArea.value;
-        const newTask = new Task(tName, tDescription);
-        addTask(newTask);
-        document.getElementById('input').value = '';
-        document.getElementById('area').value = '';
+        const tName = input.value.trim();
+        const tDescription = textArea.value.trim();
+        if (tName !== '' && tDescription !== '') {
+            const newTask = new Task(tName, tDescription);
+            addTask(newTask);
+            document.getElementById('input').value = '';
+            document.getElementById('area').value = '';
+            menu.classList.add('hide');
+        } else {
+            if (tName === "") {
+                input.classList.add('error')
+            }
+            if (tDescription === '') {
+                textArea.classList.add('error')
+            }
+        }
+    }
+
+    /**
+     * Init function
+     *
+     */
+    function init() {
+        document.querySelector('input').addEventListener('keydown', function (event) {
+            event.target.classList.remove('error');
+            console.log(event.target)
+        })
+        document.querySelector('textarea').addEventListener('keydown', function (event) {
+            event.target.classList.remove('error');
+            console.log(event.target)
+        })
+        const task = new Task('Enter Name', 'Enter Description');
+        addTask(task);
     }
 
     /**
@@ -105,6 +135,9 @@ window.addEventListener('load', function () {
                 return false;
             }
         }
+        /**
+         *Edited tasks
+         */
         let taskLength;
         if (event.target.classList.contains('edit')) {
             const taskId = event.target.getAttribute('data-id');
@@ -116,41 +149,51 @@ window.addEventListener('load', function () {
 
             document.getElementById('inputEdit').value = taskLength[0].name
             document.getElementById('areaEdit').value = taskLength[0].description
-
-            document.getElementById('save').setAttribute('data-id',taskLength[0].id)
+            document.getElementById('save').setAttribute('data-id', taskLength[0].id);
             $('#editModal').modal('show');
         }
     })
+
     /**
-     * Save edited task
+     * edit given task
+     * @param task
      */
+
+    function editTask(task) {
+        taskList.forEach((element, index) => {
+            if (element.id === task.id) {
+                taskList[index] = task;
+            }
+        });
+    }
+
     saveButton.addEventListener('click', function (event) {
-        const editedName = taskName.value;
-        const editedDescription = taskDescription.value;
-        const saveId = event.target.getAttribute('data-id')
+        const editedName = taskName.value.trim();
+        const editedDescription = taskDescription.value.trim();
+        const saveId = event.target.getAttribute('data-id');
+        if (editedName !== '' && editedDescription !== '') {
+            const taskObject = new Task(editedName, editedDescription);
+            taskObject.id = saveId;
+            editTask(taskObject);
+            $('#editModal').modal('hide');
+            render();
+        } else {
+            if (editedName === "") {
+                taskName.classList.add('error')
+            }
+            if (editedDescription === '') {
+                taskDescription.classList.add('error')
+            }
+        }
 
+    });
+    document.querySelector('#inputEdit').addEventListener('keydown', function (event) {
+        event.target.classList.remove('error')
     })
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    document.querySelector('#areaEdit').addEventListener('keydown', function (event) {
+        event.target.classList.remove('error')
+    })
+});
 
 
 
