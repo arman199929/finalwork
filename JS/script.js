@@ -29,15 +29,20 @@ window.addEventListener('load', function () {
         }
 
         toMethod() {
-            return `<li class="task card" >
-              <h3 class="taskTitle"><img src="../image/icon.png" alt="" width="50" height="50">Task</h3>
+            return `<div class="task card" >
+              <h3 class="taskTitle"><img src="./image/icon.png" alt="" width="50" height="50">Task</h3>
               <p class="taskNumber"> Name - ${this.name}</p>
               <p class="taskNumber"> Description - ${this.description}</p>
-              <button type="button" class=" btn btn-primary edit" data-id="${this.id}"
-              type="button"  data-toggle="modal" data-target="#exampleModal"
-              >Edit</button>
-              <button type="button" class=" btn btn-primary delete" id="${this.id}">Delete</button>
-             </li>`;
+              <div class="btn-toolbar">
+              <div class="btn-group col">
+              <button type="button" class="btn btn-primary edit w-100" data-id="${this.id}"
+              type="button"  data-toggle="modal" data-target="#exampleModal">Edit</button>
+              </div>
+              <div class="btn-group col">
+              <button type="button" class="btn btn-primary delete w-100" id="${this.id}">Delete</button>
+              </div>
+              </div>
+             </div>`;
         }
     }
 
@@ -103,8 +108,6 @@ window.addEventListener('load', function () {
             event.target.classList.remove('error');
             console.log(event.target)
         })
-        const task = new Task('Enter Name', 'Enter Description');
-        addTask(task);
     }
 
     /**
